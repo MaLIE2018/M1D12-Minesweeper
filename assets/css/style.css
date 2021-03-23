@@ -1,0 +1,12 @@
+board {
+    max-width: 810px;
+    width: 810px;
+    max-height: 810px;
+}
+
+.field {
+    display: inline-block;
+    width: 81px;
+    height: 81px;
+    margin: 0 auto;
+}
