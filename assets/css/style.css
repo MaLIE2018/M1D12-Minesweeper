@@ -1,12 +1,22 @@
-board {
-    max-width: 810px;
+/* board {
+    height: 810px;
     width: 810px;
-    max-height: 810px;
+    max-width: 810px;
+    padding: 0 auto;
+    margin: 0 auto;
+} */
+
+div.col {
+    border: 2px solid rgb(209, 205, 205);
+    justify-content: center;
 }
 
-.field {
-    display: inline-block;
-    width: 81px;
-    height: 81px;
-    margin: 0 auto;
-}
+
+/* span.field.covered {
+    width: 10%;
+    height: 10%;
+    padding: 10%;
+    margin: 10%;
+    border: 1px solid rgb(211, 214, 214);
+    box-sizing: border-box;
+} */
