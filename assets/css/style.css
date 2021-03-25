@@ -8,7 +8,30 @@
 
 div.col {
     border: 2px solid rgb(209, 205, 205);
+    position: relative;
     /* justify-content: center; */
+}
+
+.field {
+    margin-left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.field.covered {
+    visibility: hidden;
+}
+
+.uncovered {
+    background-color: chartreuse;
+}
+
+#flag {
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    transform: translateY(-50%);
+    z-index: 1;
 }
 
 
