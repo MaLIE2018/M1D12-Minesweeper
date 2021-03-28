@@ -1,29 +1,53 @@
 const board = document.getElementById("board")
-const container = document.querySelector(".container-fluid")
+const container = document.querySelector("#board-container")
 
 let numOfMines = 10
 let mines = Array(numOfMines)
 
 let availableBoardIndices = []
+
 let colPerRow = 9,
     RowPerBoard = 9
 
+
+
 let numOfFields = colPerRow * RowPerBoard
+console.log('numOfFields:', numOfFields)
 
 
 const FillArray = () => {
     for (let i = 0; i < numOfFields; i++) {
         availableBoardIndices.push(i)
     }
+
 }
 FillArray()
 
+
 // Gameover
 const gameOver = () => {
-    alert("You losed")
+    alert("You losed - new game will be started")
+    availableBoardIndices.length = 0
+    location.reload()
+
 }
 
 
+//Winning Case
+const catchedMines = () => {
+    let flags = document.querySelectorAll("#flag")
+    let count = 0
+    for (const item of flags) {
+        if (item.parentElement.classList.contains("mine") === true) {
+            count++
+        }
+    }
+    if (count === numOfMines) {
+        alert("You Won - New game?")
+        availableBoardIndices.length = 0
+        location.reload()
+    }
+}
 
 const uncoverFields = (id) => {
     id = id.split("")
@@ -44,7 +68,6 @@ const uncoverFields = (id) => {
 
     for (const neigh of neighbors) {
         let currentEle = document.getElementById(neigh)
-        console.log('currentEle:', currentEle)
         if (currentEle !== null && currentEle.classList.contains("mine") === false) {
             let mine = currentEle.classList.contains("mine")
             let num = currentEle.classList.contains("num")
@@ -73,7 +96,7 @@ const fillMinesweeperBoard = () => {
         row.classList.add("row")
         for (let indc = 0; indc < colPerRow; indc++) {
             let col = document.createElement("div")
-            col.classList.add("col", "col-sm", "col-md", "col-lg", "col-xl", "m-2", "p-0", "covered")
+            col.classList.add("col", "m-2", "p-0", "col-sm", "col-md", "col-lg", "col-xl", "covered") //
             col.id = `${indr}${indc}`
             col.addEventListener("click", (event) => {
                 let mine = event.currentTarget.classList.contains("mine")
@@ -81,8 +104,10 @@ const fillMinesweeperBoard = () => {
                 let covered = event.currentTarget.classList.contains("covered")
                 let flagged = event.currentTarget.classList.contains("flagged")
 
+
                 if (flagged) {
                     event.currentTarget.querySelector("#flag").remove()
+                    event.currentTarget.classList.remove("flagged")
                     event.currentTarget.classList.remove("#flag")
                     countFlags()
                 } else {
@@ -151,6 +176,7 @@ const calcSumOfNumberfields = (id) => {
 }
 
 const avoidRepetition = () => {
+
     let stillAvailable = true
     let pos = false
     let randomNum = 0
@@ -195,19 +221,19 @@ const setAFlag = (event) => {
             item.classList.add("flagged")
             item.innerHTML += flag
             countFlags()
+            catchedMines()
         }
     }
-}
-
-const countFlags = () => {
-    let resultFlag = document.getElementById("setFlags")
-    let result = numOfMines - parseInt(document.querySelectorAll("#flag").length)
-    console.log('result:', result)
-    resultFlag.innerText = result
 }
 
 //set a flag 
 window.oncontextmenu = function(event) {
     setAFlag(event);
     return false; // cancel default menu
+}
+
+const countFlags = () => {
+    let resultFlag = document.getElementById("setFlags")
+    let result = numOfMines - parseInt(document.querySelectorAll("#flag").length)
+    resultFlag.innerText = result
 }

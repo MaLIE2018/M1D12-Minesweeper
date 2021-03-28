@@ -1,10 +1,10 @@
-/* board {
-    height: 810px;
-    width: 810px;
-    max-width: 810px;
-    padding: 0 auto;
-    margin: 0 auto;
-} */
+body {
+    background: rgb(223, 232, 232);
+    background: -moz-linear-gradient(49deg, rgba(223, 232, 232, 1) 0%, rgba(101, 194, 127, 1) 7%);
+    background: -webkit-linear-gradient(49deg, rgba(223, 232, 232, 1) 0%, rgba(101, 194, 127, 1) 7%);
+    background: linear-gradient(49deg, rgba(223, 232, 232, 1) 0%, rgba(101, 194, 127, 1) 7%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#dfe8e8", endColorstr="#65c27f", GradientType=1);
+}
 
 div.col {
     border: 2px solid rgb(209, 205, 205);
@@ -18,9 +18,10 @@ div.col {
     text-align: center;
 }
 
-.field.covered {
+
+/* .field.covered {
     visibility: hidden;
-}
+} */
 
 .uncovered {
     background-color: chartreuse;
