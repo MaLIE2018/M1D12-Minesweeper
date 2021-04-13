@@ -228,6 +228,7 @@ const setAFlag = (event) => {
 
 //set a flag 
 window.oncontextmenu = function(event) {
+    event.preventDefault()
     setAFlag(event);
     return false; // cancel default menu
 }
